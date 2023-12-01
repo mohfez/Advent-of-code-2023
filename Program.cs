@@ -1,0 +1,1 @@
+﻿Console.WriteLine(new Day1().Answer(false));
