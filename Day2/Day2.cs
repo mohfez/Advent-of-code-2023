@@ -10,14 +10,14 @@ public class Day2
         string[] input = File.ReadAllLines("Day2/input.txt");
 
         string gameNumRegex = @"Game (\d+):";
-        string getColours = @"(\d+) (red|green|blue)";
+        string getColoursRegex = @"(\d+) (red|green|blue)";
 
         foreach (string line in input)
         {
             Game currentGame = new Game();
             currentGame.gameID = int.Parse(Regex.Match(line, gameNumRegex).Groups[1].Value);
 
-            foreach (Match match in Regex.Matches(line, getColours))
+            foreach (Match match in Regex.Matches(line, getColoursRegex))
             {
                 int colourAmount = int.Parse(match.Groups[1].Value);
                 string colour = match.Groups[2].Value;
