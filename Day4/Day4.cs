@@ -39,13 +39,7 @@ public class Day4
             points += (int) Math.Pow(2, valid - 1);
 
             // pt2
-            for (int i = 0; i < copies[cardNum - 1]; i++)
-            {
-                for (int k = cardNum; k - cardNum < valid; k++)
-                {
-                    copies[k]++;
-                }
-            }
+            for (int i = cardNum; i - cardNum < valid; i++) copies[i] += copies[cardNum - 1];
         }
 
         return pt2 ? copies.Sum() : points;
