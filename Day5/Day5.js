@@ -8,28 +8,43 @@ input.shift(); // remove "seeds: ..."
 for (const line of input) line.shift(); // remove title
 input = input.map(part => part.map(nums => nums.split(" ").map(num => parseInt(num)))); // change strings to nums
 
-const pt2 = true;
-if (pt2)
+const PT2 = true;
+const PT2_MULTIPLIER = 1000; // depends on input, small input can get away with 1 but bigger inputs should have a bigger multiplier
+if (PT2)
 {
     for (let i = 0; i < seeds.length; i += 2) seeds[i + 1] = seeds[i] + seeds[i + 1]; // clean up seed ranges
 
-    // brute force time :))), takes 10 years so not much
-    let location = 1;
-    let found = false;
-    while (!found)
+    // faster brute force using estimates
+    function bruteForce(add, start)
     {
-        const seed = GetSeed(location);
-        for (let i = 0; i < seeds.length; i += 2)
+        let location = start;
+        while (true)
         {
-            if (seed >= seeds[i] && seed <= seeds[i + 1])
+            const seed = GetSeed(location);
+            for (let i = 0; i < seeds.length; i += 2)
             {
-                console.log(location);
-                found = true;
+                if (seed >= seeds[i] && seed <= seeds[i + 1])
+                {
+                    return location;
+                }
             }
+            
+            location += add;
         }
-        
-        location++;
     }
+
+    const firstEstimate = bruteForce(PT2_MULTIPLIER, 1).toString();
+    const secondEstimate = bruteForce(PT2_MULTIPLIER * 10, 1).toString();
+
+    let start = 0;
+    for (let i = 0; i < firstEstimate.length; i++)
+    {
+        if (firstEstimate[i] == secondEstimate[i]) start = start * 10 + parseInt(firstEstimate[i]);
+        else break;
+    }
+
+    start = start * Math.pow(10, firstEstimate.length - start.toString().length);
+    console.log(bruteForce(1, start));
 }
 else
 {
