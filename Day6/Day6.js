@@ -1,9 +1,7 @@
 const fs = require("fs");
 
-let input = fs.readFileSync("Day6/input.txt", { encoding: "utf-8" });
-
-const PT2 = true;
-input = input.split("\r\n").map(part => PT2 ? part.replace(/\s+/g, "").match(/\d+/g).map(Number) : part.match(/\d+/g).map(Number));
+const PT2 = false;
+let input = fs.readFileSync("Day6/input.txt", { encoding: "utf-8" }).split("\r\n").map(part => PT2 ? part.replace(/\s+/g, "").match(/\d+/g).map(Number) : part.match(/\d+/g).map(Number));
 
 let ans = 1;
 for (let i = 0; i < input[0].length; i++)
