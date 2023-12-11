@@ -6,4 +6,5 @@
 // day 6 is in JS :(
 // day 7 is in JS :(
 // day 8 is in C
-Console.WriteLine(new Day9().Answer(false));
+//Console.WriteLine(new Day9().Answer(false));
+Console.WriteLine(new Day10().Answer(false));
